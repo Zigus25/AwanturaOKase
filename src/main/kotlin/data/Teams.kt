@@ -18,7 +18,7 @@ object Teams {
         val teamBid = teams[id].bid
         val teamAmount = teams[id].amount
         teams[id] = teams[id].copy(amount = teamAmount-(amount - teamBid))
-        teams[0] = teams[0].copy(amount = teams[0].amount+amount)
+        teams[0] = teams[0].copy(amount = teams[0].amount+(amount - teamBid))
         teams[id] = teams[id].copy(bid = amount)
     }
 
@@ -35,6 +35,10 @@ object Teams {
         setBid(0)
         teams[0] = teams[0].copy(amount = 0)
         ActiveQuestion.nextQuestion()
+    }
+
+    fun hint(amount:Int,id:Int){
+        teams[id] = teams[id].copy(amount = teams[id].amount - amount)
     }
 
     fun setBank(amount:Int){

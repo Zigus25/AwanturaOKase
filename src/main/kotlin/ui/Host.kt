@@ -55,6 +55,8 @@ fun hostUI(){
                 val visB = remember { mutableStateOf(false) }
                 val visBank = remember { mutableStateOf(false) }
                 val visPath = remember { mutableStateOf(false) }
+                val visHint = remember { mutableStateOf(false) }
+                val visHintPrice = remember { mutableStateOf(false) }
                 Button(onClick = {
                     visB.value = true
                 }) {
@@ -108,6 +110,22 @@ fun hostUI(){
                         Teams.setBank(amount)
                     }
                     Text("Set bank", fontSize = 20.sp,color = MaterialTheme.colors.onPrimary)
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Button(onClick = {
+                    visHint.value = true
+                }){
+                    val iD = remember{ mutableStateOf(0) }
+                    dropTeam(visHint.value){id->
+                        visHint.value=false
+                        visHintPrice.value=true
+                        iD.value=id
+                    }
+                    changeAmount(visHintPrice.value, Teams.teams[iD.value]){amount->
+                        visHintPrice.value=false
+                        Teams.hint(amount,iD.value)
+                    }
+                    Text("Buy hint", fontSize = 20.sp,color = MaterialTheme.colors.onPrimary)
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Button(onClick = {
