@@ -14,6 +14,13 @@ fun dropTeam(e:Boolean,onClose:(id:Int)->Unit){
         onDismissRequest = { expanded = false }
     ) {
         DropdownMenuItem(
+            content = { Text("Bank") },
+            onClick = {
+                expanded = false
+                onClose(0)
+            }
+        )
+        DropdownMenuItem(
             content = { Text("Blue") },
             onClick = {
                 expanded = false

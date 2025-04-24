@@ -17,9 +17,11 @@ object Teams {
     fun changeBid(id:Int,amount:Int){
         val teamBid = teams[id].bid
         val teamAmount = teams[id].amount
-        teams[id] = teams[id].copy(amount = teamAmount-(amount - teamBid))
-        teams[0] = teams[0].copy(amount = teams[0].amount+(amount - teamBid))
-        teams[id] = teams[id].copy(bid = amount)
+        if(teamAmount >= (amount - teamBid)) {
+            teams[id] = teams[id].copy(amount = teamAmount - (amount - teamBid))
+            teams[0] = teams[0].copy(amount = teams[0].amount + (amount - teamBid))
+            teams[id] = teams[id].copy(bid = amount)
+        }
     }
 
     fun winner(){
@@ -41,8 +43,8 @@ object Teams {
         teams[id] = teams[id].copy(amount = teams[id].amount - amount)
     }
 
-    fun setBank(amount:Int){
-        teams[0] = teams[0].copy(amount = amount)
+    fun setBank(amount:Int,id:Int){
+        teams[id] = teams[id].copy(amount = amount)
     }
 
     fun setBid(amount:Int){

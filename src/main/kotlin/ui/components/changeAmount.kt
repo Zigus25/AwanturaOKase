@@ -21,7 +21,7 @@ fun changeAmount(e:Boolean, team: Team, onClose:(amount:Int)->Unit){
                     .onKeyEvent { keyEvent ->
                         if (keyEvent.key != Key.Enter) return@onKeyEvent false
                         if (keyEvent.type == KeyEventType.KeyUp) {
-                            onClose(value.value.toInt())
+                            onClose(value.value.filter { it.isDigit() }.toInt())
                         }
                         true
                     })
