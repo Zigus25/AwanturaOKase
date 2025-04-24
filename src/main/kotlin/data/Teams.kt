@@ -52,4 +52,11 @@ object Teams {
             teams[i] = teams[i].copy(bid = amount)
         }
     }
+
+    fun factoryReset() {
+        teams[0]  = Team(Color.Black,Color.White,0,0,0)
+        teams[1]  = Team(Color.Cyan,Color.Black, 1, 10000, 0)
+        teams[2]  = Team(Color.Green,Color.Black, 2, 10000, 0)
+        teams[3]  = Team(Color.Yellow,Color.Black, 3, 10000, 0)
+    }
 }

@@ -16,7 +16,7 @@ object ActiveQuestion {
         if (index.value< questions.count()) {
             Teams.setBid(0)
             for (i in 1..3) {
-                Teams.changeBid(i, 500)
+                Teams.changeBid(i, 200)
             }
             activeQuestion.value = questions[index.value]
             index.value += 1
@@ -36,6 +36,7 @@ object ActiveQuestion {
     fun import(path:String) {
         val ques:List<Question> = convert(path)
         questions = ques.shuffled(random = Random(164109))
+        Teams.factoryReset()
         nextQuestion()
     }
 
